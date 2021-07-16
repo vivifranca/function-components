@@ -1,17 +1,23 @@
+import React, { Component } from 'react'
 import { Container, Typography } from '@material-ui/core'
-import React from 'react'
 import './App.css'
 import RegistrationForm from './components/RegistrationForm/RegistrationForm'
 import 'fontsource-roboto'
 
-function App() {
-  return (
-    <Container component='article' maxWidth='sm'>
-      <Typography variant='h3' component='h1' align="center">Registration Form</Typography>
+class App extends Component {
+  render() {
+    return (
+      <Container component='article' maxWidth='sm'>
+        <Typography variant='h3' component='h1' align="center">Registration Form</Typography>
 
-      <RegistrationForm />
-    </Container>
-  )
+        <RegistrationForm onSubmit={onSubmit} />
+      </Container>
+    )
+  }
+}
+
+function onSubmit(data) {
+  console.log(data)
 }
 
 export default App
