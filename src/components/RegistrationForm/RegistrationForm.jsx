@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core'
 
-function RegistrationForm({ onSubmit }) {
+function RegistrationForm({ onSubmit, validateId }) {
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
   const [id, setId] = useState('')
   const [sales, setSales] = useState(true)
   const [newsletter, setNewsletter] = useState(true)
+  const [errors, setErrors] = useState({ id: { valid: true, text: ''} })
 
   return (
     <form onSubmit={event => {
@@ -35,6 +36,9 @@ function RegistrationForm({ onSubmit }) {
         id='id'
         value={id}
         onChange={event => setId(event.target.value)}
+        onBlur={event => setErrors({ id: validateId(event.target.value) })}
+        error={!errors.id.valid}
+        helperText={errors.id.text}
         label='ID'
         variant='outlined'
         fullWidth

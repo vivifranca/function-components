@@ -10,7 +10,10 @@ class App extends Component {
       <Container component='article' maxWidth='sm'>
         <Typography variant='h3' component='h1' align="center">Registration Form</Typography>
 
-        <RegistrationForm onSubmit={onSubmit} />
+        <RegistrationForm
+          onSubmit={onSubmit}
+          validateId={validateId}
+        />
       </Container>
     )
   }
@@ -18,6 +21,14 @@ class App extends Component {
 
 function onSubmit(data) {
   console.log(data)
+}
+
+function validateId(id){
+  if(id.length < 5) {
+    return { valid: false, text: 'ID must be at least 5 digits' }
+  } else {
+    return { valid: true, text: '' }
+  }
 }
 
 export default App
